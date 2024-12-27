@@ -100,9 +100,9 @@ export function NadvBars() {
               </Link>
             </li>
             <li>
-              <a href="#">
+             <Link to = "/cronometro" >
                 Services... <img className="mini-img" src={mini3} alt="" />
-              </a>
+            </Link>
             </li>
             <li>
               <Link to="/perfil" >
