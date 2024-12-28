@@ -14,6 +14,10 @@ interface User {
   uid: string;
 }
 
+interface AuthContextType {
+  user: User | null;
+}
+
 const Carrusel: React.FC = () => {
   const pesos: number[] = [
     10, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
@@ -22,8 +26,7 @@ const Carrusel: React.FC = () => {
     76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
   ];
 
-  // Usamos `user` del contexto de autenticación
-  const { user } = useAuth(); // `user` podría ser `null`, por lo que necesitamos verificarlo
+  const { user } = useAuth() as AuthContextType; // `user` podría ser `null`, por lo que necesitamos verificarlo
   const db = getFirestore();
   const [currentIndex, setCurrentIndex] = useState<number>(27);
 
@@ -48,7 +51,6 @@ const Carrusel: React.FC = () => {
 
   const savePeso = async () => {
     if (!user || !user.uid) {
-      // Asegurándonos de que `user` y `user.uid` existen
       Swal.fire("Error", "Debes iniciar sesión para guardar tu peso", "error");
       return;
     }

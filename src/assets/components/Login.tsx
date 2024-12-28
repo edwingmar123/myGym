@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "./AuthContext";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "./Credenciales";
+import {  db } from "./Credenciales";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { DivContainer, FormStyle } from "./Styled";
 import Gym from "../Gym.png";

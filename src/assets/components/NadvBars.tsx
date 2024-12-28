@@ -31,7 +31,7 @@ export function NadvBars() {
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
-          const data = userDoc.data();
+          const data = userDoc.data() as User;
           setPhotoURL(data.photoURL || null);
         } else {
           console.log("El documento del usuario no existe.");
