@@ -19,7 +19,7 @@ import Carrusel from "./assets/components/Carousel";
 import Carrusel2 from "./assets/components/Carousel2";
 import Carrusel3 from "./assets/components/Carousel3";
 import { Sex } from "./Sex";
-import { Suscripcion } from "./Suscripcion";
+
 import { NadvBars } from "./assets/components/NadvBars";
 import { Cronometro } from "./assets/components/Cronometro";
 import { Pullups } from "./assets/components/Pullups";
@@ -61,7 +61,6 @@ function App(): JSX.Element {
         <Route path="/carousel3" element={<Carrusel3 />} />
         <Route path="/nadvbars" element={<NadvBars />} />
         <Route path="/work" element={<Work />} />
-        <Route path="/suscripcion" element={<Suscripcion />} />
 
         <Route path="/bicepcurl" element={<Bicepcurl />} />
         <Route path="/legcor" element={<Legcor />} />
