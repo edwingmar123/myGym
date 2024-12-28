@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ejerc1 from "../ejerc1.png";
 import ejerc2 from "../ejerc2.png";
 import ejerc3 from "../ejerc3.png";
 import ejerc4 from "../ejerc4.png";
-import { Card } from "./Card"
+import { Card } from "./Card";
 import { NadvBars } from "./NadvBars";
-
 
 // Definir el tipo para los ejercicios
 interface Ejercicio {
@@ -17,13 +16,12 @@ interface Ejercicio {
 }
 
 export function Inicio() {
-  
   const ejercicios: Ejercicio[] = [
     {
       id: 1,
       title: "Ejercicio 1",
       description: "Descripción del ejercicio 1",
-      imgUrl: ejerc1, 
+      imgUrl: ejerc1,
     },
     {
       id: 2,
@@ -45,15 +43,18 @@ export function Inicio() {
     },
   ];
 
+  const handleCardClick = (title: string) => {
+    console.log(`Has seleccionado el ejercicio: ${title}`);
+  };
+
   useEffect(() => {
     console.log("Componente Inicio montado");
   }, []);
 
   return (
     <Container>
-
       <NadvBars />
-      
+
       <Row className="my-4">
         {/* Aquí podrías agregar más contenido o estructuras si es necesario */}
       </Row>
@@ -80,6 +81,7 @@ export function Inicio() {
             title={ejercicio.title}
             description={ejercicio.description}
             imgUrl={ejercicio.imgUrl} // Enviar la ruta correcta al componente Card
+            onClick={() => handleCardClick(ejercicio.title)} // Agregar la función que se ejecuta al hacer click en el Card
           />
         ))}
       </Row>

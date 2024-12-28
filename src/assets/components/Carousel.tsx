@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import app from "./Credenciales";
 import { useAuth } from "./AuthContext";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-} from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
-const EDADES = Array.from({ length: 60 }, (_, i) => i + 1); 
+const EDADES = Array.from({ length: 60 }, (_, i) => i + 1);
 
 const Carrusel: React.FC = () => {
-  const { user } = useAuth(); 
-  const db = getFirestore(app); 
-  const [currentIndex, setCurrentIndex] = useState<number>(27); 
- 
+  const { user } = useAuth();
+  const db = getFirestore(app);
+  const [currentIndex, setCurrentIndex] = useState<number>(27);
 
- 
   const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
     e.preventDefault();
     setCurrentIndex((prev) =>
@@ -28,15 +21,12 @@ const Carrusel: React.FC = () => {
     );
   };
 
-  
   const handleIncrement = () =>
     setCurrentIndex((prev) => Math.min(prev + 1, EDADES.length - 1));
 
-  
   const handleDecrement = () =>
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
 
-  
   const saveEdad = async () => {
     if (!user || !user.uid) {
       Swal.fire("Error", "Debes iniciar sesión para guardar tu edad", "error");
@@ -45,7 +35,7 @@ const Carrusel: React.FC = () => {
 
     try {
       const edadSeleccionada = EDADES[currentIndex];
-      const userRef = doc(db, "users", user.uid); 
+      const userRef = doc(db, "users", user.uid);
 
       await setDoc(
         userRef,
@@ -92,14 +82,12 @@ const Carrusel: React.FC = () => {
         Guardar
       </button>
 
-        <div>
-        
-      <button className="siguiente-button"  > 
-      <Link to = "/carousel2" ></Link> 
-      Next                                 
-      </button>
-        </div>
-
+      <div>
+        <button className="siguiente-button">
+          <Link to="/carousel2"></Link>
+          Next
+        </button>
+      </div>
     </div>
   );
 };

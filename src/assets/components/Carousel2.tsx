@@ -21,11 +21,10 @@ const Carrusel: React.FC = () => {
     1.97, 1.98, 1.99, 2.0,
   ];
 
-  const { user } = useAuth() as AuthContextType; 
-  const db = getFirestore(); 
-  const [currentIndex, setCurrentIndex] = useState<number>(27); 
+  const { user } = useAuth() as AuthContextType;
+  const db = getFirestore();
+  const [currentIndex, setCurrentIndex] = useState<number>(27);
 
-  
   const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (e.deltaY > 0) {
@@ -35,35 +34,35 @@ const Carrusel: React.FC = () => {
     }
   };
 
-  
   const handleIncrement = () => {
     setCurrentIndex((prev) => Math.min(prev + 1, alturas.length - 1));
   };
 
-  
   const handleDecrement = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  
   const saveAltura = async () => {
     if (!user) {
-      Swal.fire("Error", "Debes iniciar sesión para guardar tu altura", "error");
+      Swal.fire(
+        "Error",
+        "Debes iniciar sesión para guardar tu altura",
+        "error"
+      );
       return;
     }
 
     try {
-      const alturaCentrada = alturas[currentIndex]; 
-      const userRef = doc(db, "users", user.uid); 
+      const alturaCentrada = alturas[currentIndex];
+      const userRef = doc(db, "users", user.uid);
 
-      
       await setDoc(
         userRef,
         {
           height: alturaCentrada,
           updatedAt: new Date(),
         },
-        { merge: true } 
+        { merge: true }
       );
 
       Swal.fire("Éxito", "Altura guardada correctamente", "success");
@@ -75,12 +74,10 @@ const Carrusel: React.FC = () => {
 
   return (
     <div className="carrusel-container" onWheel={handleScroll}>
-     
       <button className="carrusel-button" onClick={handleDecrement}>
         -
       </button>
 
-      
       <div className="carrusel">
         {alturas.map((altura, index) => (
           <div
@@ -97,21 +94,19 @@ const Carrusel: React.FC = () => {
         ))}
       </div>
 
-     
       <button className="carrusel-button" onClick={handleIncrement}>
         +
       </button>
 
-      
       <button className="carrusel-button" onClick={saveAltura}>
         Guardar Altura
       </button>
 
       <div>
-      <button className="siguiente-button" > 
-      <Link to = "/carousel2" ></Link> 
-      Next                                 
-      </button>
+        <button className="siguiente-button">
+          <Link to="/carousel2"></Link>
+          Next
+        </button>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import React from "react";
 import informacion from "../informacion.png";
 import { Link } from "react-router-dom";
 import flecha from "../flecha.png";
@@ -6,11 +5,13 @@ export function Informacion() {
   return (
     <div>
       <button className="flecha">
-        <Link to="/inicio"> <img  className="flechas" src={flecha} alt="flecha" /> </Link>
+        <Link to="/inicio">
+          {" "}
+          <img className="flechas" src={flecha} alt="flecha" />{" "}
+        </Link>
       </button>
 
       <img className="img-informacion" src={informacion} alt="" />
-
 
       <h1>Informacion</h1>
       <br />

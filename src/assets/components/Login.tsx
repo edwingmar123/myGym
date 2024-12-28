@@ -8,7 +8,6 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { DivContainer, FormStyle } from "./Styled";
 import Gym from "../Gym.png";
 
-
 interface FormData {
   email: string;
   pass: string;
@@ -28,7 +27,7 @@ export function Login() {
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const authInstance = getAuth(auth);
+      const authInstance = getAuth();
       const { user } = await signInWithEmailAndPassword(
         authInstance,
         formData.email,

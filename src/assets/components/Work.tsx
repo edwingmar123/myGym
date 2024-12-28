@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Card } from "./Card";
 import { NadvBars } from "./NadvBars";
 import { Row } from "react-bootstrap";
@@ -24,7 +23,7 @@ export function Work() {
 
   const navigate = useNavigate();
 
-  const handleCardClick = (ejercicio: Ejercicio) => {
+  const handleCardClick = () => {
     navigate("/splint");
   };
 
@@ -38,7 +37,7 @@ export function Work() {
             title={ejercicio.title}
             description={ejercicio.description}
             imgUrl={ejercicio.imgUrl}
-            onClick={() => handleCardClick(ejercicio)}
+            onClick={() => handleCardClick()}
           />
         ))}
       </Row>

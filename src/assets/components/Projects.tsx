@@ -41,6 +41,9 @@ export const Projects = () => {
     },
   ];
 
+  const handleCardClick = (title: string) => {
+    console.log(`Has seleccionado el ejercicio: ${title}`);
+  };
   return (
     <section className="project" id="projects">
       <Container>
@@ -86,7 +89,13 @@ export const Projects = () => {
                       <Tab.Pane eventKey="first">
                         <Row>
                           {projects.map((project, index) => {
-                            return <Card key={index} {...project} />;
+                            return (
+                              <Card
+                                key={index}
+                                {...project}
+                                onClick={() => handleCardClick(project.title)}
+                              />
+                            );
                           })}
                         </Row>
                       </Tab.Pane>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { doc, getDoc, updateDoc } from "firebase/firestore"; 
+import { useEffect, useState } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useAuth } from "./AuthContext";
-import { db } from "../components/Credenciales"; 
+import { db } from "../components/Credenciales";
 import Vector from "../Vector.png";
 import Vector1 from "../Vector1.png";
 import Vector2 from "../Vector2.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import flecha from "../flecha.png";
 
 interface User {
@@ -18,13 +18,13 @@ interface User {
 }
 
 export function Perfil() {
-  const { user , logOut } = useAuth(); 
-  const [userData, setUserData] = useState<User | null>(null); 
-  const [loading, setLoading] = useState(true); 
-  const [photoUrlInput, setPhotoUrlInput] = useState(""); 
-  const [ ,setAgregoCambio] = useState(false); 
-  
- const cerrarSesion = async () => {
+  const { user, logOut } = useAuth();
+  const [userData, setUserData] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [photoUrlInput, setPhotoUrlInput] = useState("");
+  const [, setAgregoCambio] = useState(false);
+
+  const cerrarSesion = async () => {
     try {
       await logOut();
     } catch (error) {
@@ -37,7 +37,7 @@ export function Perfil() {
 
     const fetchUserData = async () => {
       try {
-        const userDocRef = doc(db, "users", user.uid); 
+        const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
@@ -70,16 +70,15 @@ export function Perfil() {
     }
 
     try {
-      const userDocRef = doc(db, "users", user.uid); 
-      await updateDoc(userDocRef, { photoURL: photoUrlInput }); 
+      const userDocRef = doc(db, "users", user.uid);
+      await updateDoc(userDocRef, { photoURL: photoUrlInput });
 
-     
       setUserData((prevData) => {
         if (!prevData) return null;
         return { ...prevData, photoURL: photoUrlInput };
       });
 
-      setAgregoCambio(false); 
+      setAgregoCambio(false);
       alert("Imagen de perfil actualizada correctamente.");
     } catch (error) {
       console.error("Error al actualizar la imagen de perfil:", error);
@@ -99,13 +98,19 @@ export function Perfil() {
 
   return (
     <div>
-     <button className="flecha">
-        <Link to="/inicio"> <img  className="flechas" src={flecha} alt="flecha" /> </Link>
+      <button className="flecha">
+        <Link to="/inicio">
+          {" "}
+          <img className="flechas" src={flecha} alt="flecha" />{" "}
+        </Link>
       </button>
 
-      <img src={photoURL} alt="Foto de perfil" style={{ width: "150px", borderRadius: "50%" }} />
+      <img
+        src={photoURL}
+        alt="Foto de perfil"
+        style={{ width: "150px", borderRadius: "50%" }}
+      />
 
-      
       <input
         type="text"
         placeholder="Ingresa URL de la nueva imagen"
@@ -114,21 +119,22 @@ export function Perfil() {
       />
       <button onClick={handleUpdatePhotoURL}>Guardar o Actualizar</button>
 
-      
       <p>
-        <img className="mini-img" src={Vector} alt="Icono de peso" /> Peso: {peso}
+        <img className="mini-img" src={Vector} alt="Icono de peso" /> Peso:{" "}
+        {peso}
       </p>
       <p>
-        <img className="mini-img" src={Vector1} alt="Icono de altura" /> Altura: {altura}
+        <img className="mini-img" src={Vector1} alt="Icono de altura" /> Altura:{" "}
+        {altura}
       </p>
       <p>
-        <img className="mini-img" src={Vector2} alt="Icono de edad" /> Edad: {edad}
+        <img className="mini-img" src={Vector2} alt="Icono de edad" /> Edad:{" "}
+        {edad}
       </p>
       <h1>{displayName}</h1>
       <p>{displayEmail}</p>
 
-      <button onClick={cerrarSesion} >Cerrar Sesion</button>
-
+      <button onClick={cerrarSesion}>Cerrar Sesion</button>
     </div>
   );
 }

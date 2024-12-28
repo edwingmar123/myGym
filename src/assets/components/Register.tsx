@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "./AuthContext";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./Credenciales";
+
 import { DivContainer, FormStyle } from "./Styled";
 import Gym from "../Gym.png";
 
@@ -56,7 +56,7 @@ export const Register: React.FC = () => {
     if (!validateForm()) return;
 
     try {
-      const authInstance = getAuth(auth);
+      const authInstance = getAuth();
       const { user } = await createUserWithEmailAndPassword(
         authInstance,
         formData.email,

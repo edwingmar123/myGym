@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import Principal from "./Principal";
 import "./App.css";
 import { Home } from "./Home";
@@ -21,7 +27,7 @@ import { Create } from "./assets/components/Create";
 import { Rutinas } from "./assets/components/Rutinas";
 import { Informacion } from "./assets/components/Informacion";
 import { Work } from "./assets/components/Work";
-import Mensaje from "./assets/components/Mensaje";
+
 import { Bicepcurl } from "./assets/components/Bicepcurl";
 import { Legcor } from "./assets/components/Legcor";
 import { Splint } from "./assets/components/Splint";
@@ -39,7 +45,6 @@ function RequireAuth({ children }: RequireAuthProps): JSX.Element {
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-   
       <Routes>
         {/* Rutas públicas */}
         <Route index path="/" element={<Principal />} />
@@ -52,20 +57,20 @@ function App(): JSX.Element {
         <Route path="/sex" element={<Sex />} />
         <Route path="/perfil" element={<Perfeil />} />
         <Route path="/carousel" element={<Carrusel />} />
-          <Route path="/carousel2" element={<Carrusel2 />} />
-          <Route path="/carousel3" element={<Carrusel3 />} />
-          <Route path="/nadvbars" element={<NadvBars />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/suscripcion" element={<Suscripcion />} />
-          <Route path="/mensaje" element={<Mensaje />} />
-          <Route path="/bicepcurl" element={<Bicepcurl />} />
-          <Route path="/legcor" element={<Legcor />} />
-          <Route path="/cronometro" element={<Cronometro />} />
-          <Route path="/pullups" element={<Pullups />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/rutinas" element={<Rutinas />} />
-          <Route path="/informacion" element={<Informacion />} />
-          <Route path="/splint" element={<Splint />} />
+        <Route path="/carousel2" element={<Carrusel2 />} />
+        <Route path="/carousel3" element={<Carrusel3 />} />
+        <Route path="/nadvbars" element={<NadvBars />} />
+        <Route path="/work" element={<Work />} />
+        <Route path="/suscripcion" element={<Suscripcion />} />
+
+        <Route path="/bicepcurl" element={<Bicepcurl />} />
+        <Route path="/legcor" element={<Legcor />} />
+        <Route path="/cronometro" element={<Cronometro />} />
+        <Route path="/pullups" element={<Pullups />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="/rutinas" element={<Rutinas />} />
+        <Route path="/informacion" element={<Informacion />} />
+        <Route path="/splint" element={<Splint />} />
 
         {/* Rutas privadas protegidas */}
         <Route
@@ -75,11 +80,7 @@ function App(): JSX.Element {
               <Outlet />
             </RequireAuth>
           }
-        >
-          
-          
-         
-        </Route>
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

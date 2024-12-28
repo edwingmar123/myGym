@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Videos2 from "./Videos2";
 import { useNavigate, Link } from "react-router-dom";
 import { Cronometro } from "./Cronometro";
@@ -25,7 +25,10 @@ export function Bicepcurl() {
   return (
     <div>
       <button className="flecha">
-        <Link to="/inicio"> <img  className="flechas" src={flecha} alt="flecha" /> </Link>
+        <Link to="/inicio">
+          {" "}
+          <img className="flechas" src={flecha} alt="flecha" />{" "}
+        </Link>
       </button>
 
       <Videos2 />

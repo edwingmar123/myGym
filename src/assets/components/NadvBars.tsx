@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore"; 
-import { Link , useNavigate } from "react-router-dom";
-import { useAuth  } from "./AuthContext"; 
-import { db } from "../components/Credenciales"; 
-import Swal from 'sweetalert2';
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
+import { db } from "../components/Credenciales";
+import Swal from "sweetalert2";
 
 import imagenes from "../images.jpeg";
 import consejo from "../consejo.png";
@@ -21,7 +21,7 @@ export function NadvBars() {
   const [menuVisible, setMenuVisible] = useState(false);
   const navigate = useNavigate();
   const [photoURL, setPhotoURL] = useState<string | null>(null);
-  const { user , logOut } = useAuth();
+  const { user, logOut } = useAuth();
   useEffect(() => {
     if (!user) return;
 
@@ -41,22 +41,19 @@ export function NadvBars() {
       }
     };
 
-    const cerrarSesion = async () => {
-      try {
-        await logOut();
-        Swal.fire(
-        
-          "Sesión cerrada correctamente",
-          "success"
-        )
-        .then(() => navigate("/login"));
-      } catch (error) {
-        console.error("Error al cerrar sesión:", error);
-      }
-    };
-
     fetchUserData();
   }, [user]);
+
+  const cerrarSesion = async () => {
+    try {
+      await logOut();
+      Swal.fire("Sesión cerrada correctamente", "success").then(() =>
+        navigate("/login")
+      );
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
+  };
 
   const openMenu = () => {
     setMenuVisible(true);
@@ -90,46 +87,49 @@ export function NadvBars() {
               </Link>
             </li>
             <li>
-              <Link to="/informacion" >
+              <Link to="/informacion">
                 About... <img className="mini-img" src={mini1} alt="" />
-                </Link>
+              </Link>
             </li>
+
             <li>
-              <Link to= "/rutinas" >
+              <Link to="/create">
+                creat... <img className="mini-img" src={mini1} alt="" />
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/rutinas">
                 Rutina... <img className="mini-img" src={mini2} alt="" />
               </Link>
             </li>
             <li>
-             <Link to = "/cronometro" >
+              <Link to="/cronometro">
                 Services... <img className="mini-img" src={mini3} alt="" />
-            </Link>
+              </Link>
             </li>
             <li>
-              <Link to="/perfil" >
+              <Link to="/perfil">
                 Perfil... <img className="mini-img" src={mini4} alt="" />
               </Link>
             </li>
             <li>
-             <button onClick ={logOut} >
+              <button onClick={cerrarSesion}>
                 cerrar sesión... <img className="mini-img" src={mini3} alt="" />
-                </button> 
-              
+              </button>
             </li>
           </ul>
         </div>
 
-        
         <p>Hi</p>
         <p>{user?.displayName || "Nombre"}</p>
       </div>
 
-      
       <div className="consejo">
         <p>Recomendación</p>
         <img src={consejo} alt="Recomendación" className="imgconsejo" />
       </div>
 
-      
       <div className="op">
         <Link to="/inicio">
           <button className="boton-opciones">Discover</button>

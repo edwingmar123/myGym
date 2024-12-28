@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 export const Cronometro: React.FC = () => {
-  const [isWorkTime, setIsWorkTime] = useState<boolean>(true); 
-  const [minutes, setMinutes] = useState<number>(20); 
-  const [seconds, setSeconds] = useState<number>(0); 
-  const [isRunning, setIsRunning] = useState<boolean>(false); 
+  const [isWorkTime, setIsWorkTime] = useState<boolean>(true);
+  const [minutes, setMinutes] = useState<number>(20);
+  const [seconds, setSeconds] = useState<number>(0);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
 
-  
   useEffect(() => {
     if (!isRunning) return;
 
@@ -18,20 +17,18 @@ export const Cronometro: React.FC = () => {
         setSeconds(59);
       } else {
         setIsWorkTime((prev) => !prev);
-        setMinutes(isWorkTime ? 5 : 20); 
+        setMinutes(isWorkTime ? 5 : 20);
         setSeconds(0);
       }
     }, 1000);
 
-    return () => clearInterval(timer); 
+    return () => clearInterval(timer);
   }, [isRunning, seconds, minutes, isWorkTime]);
 
- 
   const toggleTimer = (): void => {
     setIsRunning((prev) => !prev);
   };
 
-  
   const resetTimer = (): void => {
     setIsRunning(false);
     setMinutes(20);
@@ -39,11 +36,10 @@ export const Cronometro: React.FC = () => {
     setIsWorkTime(true);
   };
 
-  
   const calculateProgress = (): string => {
-    const totalSeconds = isWorkTime ? 20 * 60 : 5 * 60; 
-    const currentSeconds = minutes * 60 + seconds; 
-    return ((currentSeconds / totalSeconds) * 100).toFixed(2); 
+    const totalSeconds = isWorkTime ? 20 * 60 : 5 * 60;
+    const currentSeconds = minutes * 60 + seconds;
+    return ((currentSeconds / totalSeconds) * 100).toFixed(2);
   };
 
   return (
@@ -67,12 +63,14 @@ export const Cronometro: React.FC = () => {
                 transparent ${calculateProgress()}%
               )`,
             }}
-            onClick={toggleTimer} 
+            onClick={toggleTimer}
           >
             <div className="time">
-              
               <p>{String(minutes).padStart(2, "0")}</p>
-              <p>{String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}</p>
+              <p>
+                {String(minutes).padStart(2, "0")}:
+                {String(seconds).padStart(2, "0")}
+              </p>
               <p>{String(seconds).padStart(2, "0")}</p>
             </div>
           </div>
