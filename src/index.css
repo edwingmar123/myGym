@@ -39,6 +39,8 @@ h1 {
 
 button {
   border-radius: 8px;
+  position: relative;
+  bottom: -170px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -67,6 +69,16 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.register{
+  position: relative;
+  bottom: 4px;
+}
+
+.google{
+  position: relative;
+  bottom: -1px;
 }
 
 .main-container {
@@ -956,9 +968,9 @@ button:disabled {
 .tab-content {
   position: relative;
   left: 20%;
-  
 }
 
-.t{
+.t {
   position: relative;
-  left: -20%;}
+  left: -20%;
+}

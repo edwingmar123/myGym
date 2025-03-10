@@ -117,7 +117,7 @@ export const Register: React.FC = () => {
           pattern="^[0-9]{10}$"
           required
         />
-        <button type="submit">Registrar</button>
+        <button className="register" type="submit">Registrar</button>
       </FormStyle>
 
       <button className="google" onClick={handleGoogleRegister}>
